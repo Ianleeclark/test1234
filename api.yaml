@@ -1,0 +1,367 @@
+asyncapi: 3.0.0
+info:
+  title: watchlist
+  version: 1.0.0
+  x-generator: springwolf
+defaultContentType: application/json
+servers:
+  sqs-server:
+    host: http://localhost:4566
+    protocol: sqs
+channels:
+  SourceModified:
+    address: SourceModified
+    messages:
+      de.exaring.watchlist.event.incoming.SourceModifiedEventPayload:
+        $ref: "#/components/messages/de.exaring.watchlist.event.incoming.SourceModifiedEventPayload"
+      de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload:
+        $ref: "#/components/messages/de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload"
+  StreamPositionUpdate:
+    address: StreamPositionUpdate
+    messages:
+      de.exaring.watchlist.event.incoming.StreamPositionUpdatePayload:
+        $ref: "#/components/messages/de.exaring.watchlist.event.incoming.StreamPositionUpdatePayload"
+  UserDataDeletionExecuted:
+    address: UserDataDeletionExecuted
+    messages:
+      de.exaring.watchlist.event.published.UserDataDeletionExecuted:
+        $ref: "#/components/messages/de.exaring.watchlist.event.published.UserDataDeletionExecuted"
+  UserSubscriptionDeleted:
+    address: UserSubscriptionDeleted
+    messages:
+      de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload:
+        $ref: "#/components/messages/de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload"
+components:
+  schemas:
+    HeadersNotDocumented:
+      type: object
+      properties: {}
+      description: "There can be headers, but they are not explicitly documented."
+      examples:
+        - {}
+    de.exaring.watchlist.event.incoming.SourceModifiedEventPayload:
+      title: SourceModifiedEventPayload
+      type: object
+      properties:
+        broadcastEndDate:
+          type: string
+          format: date-time
+        broadcastEndExact:
+          type: string
+          format: date-time
+        broadcastStartDate:
+          type: string
+          format: date-time
+        broadcastStartExact:
+          type: string
+          format: date-time
+        cast:
+          type: array
+          items:
+            $ref: "#/components/schemas/de.exaring.watchlist.event.incoming.SourceModifiedEventPayload.Cast"
+        crew:
+          type: array
+          items:
+            $ref: "#/components/schemas/de.exaring.watchlist.event.incoming.SourceModifiedEventPayload.Crew"
+        description:
+          type: string
+        duration:
+          type: integer
+          format: int64
+        episodeNumber:
+          type: integer
+          format: int32
+        filterCategories:
+          type: array
+          items:
+            type: string
+        filterGenres:
+          type: array
+          items:
+            type: string
+        genre:
+          type: string
+        id:
+          type: string
+          format: uuid
+        image:
+          type: string
+        modificationType:
+          type: string
+          enum:
+            - INSERT
+            - UPDATE
+            - DELETE
+        parentId:
+          type: string
+          format: uuid
+        parentalGuidance:
+          type: string
+        pinRequired:
+          type: boolean
+        productionCountries:
+          type: array
+          items:
+            type: string
+        productionYear:
+          type: integer
+          format: int32
+        provider:
+          type: string
+          enum:
+            - simplyTv
+            - dmb
+        providerId:
+          type: string
+        publishedFromDate:
+          type: string
+          format: date-time
+        publishedUntilDate:
+          type: string
+          format: date-time
+        recordingForbidden:
+          type: boolean
+        rerun:
+          type: boolean
+        seasonDescription:
+          type: string
+        seasonNumber:
+          type: integer
+          format: int32
+        seasonTitle:
+          type: string
+        seriesDescription:
+          type: string
+        seriesGenre:
+          type: string
+        seriesId:
+          type: string
+        seriesTitle:
+          type: string
+        sourceCreatedAt:
+          type: string
+          format: date-time
+        sourceId:
+          type: string
+        sourceSystem:
+          type: string
+          enum:
+            - emporium
+            - epg
+            - vodman
+        stationOrCollectionId:
+          type: string
+        stationOrCollectionName:
+          type: string
+        subGenres:
+          type: array
+          items:
+            type: string
+        title:
+          type: string
+      examples:
+        - broadcastEndDate: 2015-07-20T15:49:04-07:00
+          broadcastEndExact: 2015-07-20T15:49:04-07:00
+          broadcastStartDate: 2015-07-20T15:49:04-07:00
+          broadcastStartExact: 2015-07-20T15:49:04-07:00
+          cast:
+            - name: string
+              role: string
+          crew:
+            - jobTitle: string
+              name: string
+          description: string
+          duration: 0
+          episodeNumber: 0
+          filterCategories:
+            - string
+          filterGenres:
+            - string
+          genre: string
+          id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+          image: string
+          modificationType: INSERT
+          parentId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+          parentalGuidance: string
+          pinRequired: true
+          productionCountries:
+            - string
+          productionYear: 0
+          provider: simplyTv
+          providerId: string
+          publishedFromDate: 2015-07-20T15:49:04-07:00
+          publishedUntilDate: 2015-07-20T15:49:04-07:00
+          recordingForbidden: true
+          rerun: true
+          seasonDescription: string
+          seasonNumber: 0
+          seasonTitle: string
+          seriesDescription: string
+          seriesGenre: string
+          seriesId: string
+          seriesTitle: string
+          sourceCreatedAt: 2015-07-20T15:49:04-07:00
+          sourceId: string
+          sourceSystem: emporium
+          stationOrCollectionId: string
+          stationOrCollectionName: string
+          subGenres:
+            - string
+          title: string
+    de.exaring.watchlist.event.incoming.SourceModifiedEventPayload.Cast:
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+      examples:
+        - name: string
+          role: string
+    de.exaring.watchlist.event.incoming.SourceModifiedEventPayload.Crew:
+      type: object
+      properties:
+        jobTitle:
+          type: string
+        name:
+          type: string
+      examples:
+        - jobTitle: string
+          name: string
+    de.exaring.watchlist.event.incoming.StreamPositionUpdatePayload:
+      title: StreamPositionUpdatePayload
+      type: object
+      properties:
+        contentId:
+          type: string
+          description: Points to a specific piece of content in a collection.
+          examples:
+            - filmtastic:foo:bar
+        position:
+          type: integer
+          format: int32
+        userHandle:
+          $ref: "#/components/schemas/de.exaring.watchlist.model.UserHandle"
+      examples:
+        - contentId: filmtastic:foo:bar
+          position: 0
+          userHandle:
+            value: string
+    de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload:
+      title: UserSubscriptionDeletedEventPayload
+      type: object
+      properties:
+        deletionId:
+          type: string
+        userHandle:
+          type: string
+      examples:
+        - deletionId: string
+          userHandle: string
+    de.exaring.watchlist.event.published.UserDataDeletionExecuted:
+      title: UserDataDeletionExecuted
+      type: object
+      properties:
+        deletionId:
+          type: string
+        errorDescription:
+          type: string
+        service:
+          type: string
+        status:
+          type: string
+      examples:
+        - deletionId: string
+          errorDescription: string
+          service: string
+          status: string
+    de.exaring.watchlist.model.UserHandle:
+      type: object
+      properties:
+        value:
+          type: string
+          minLength: 0
+          maxLength: 255
+      examples:
+        - value: string
+      required:
+        - value
+  messages:
+    de.exaring.watchlist.event.incoming.SourceModifiedEventPayload:
+      headers:
+        $ref: "#/components/schemas/HeadersNotDocumented"
+      payload:
+        schemaFormat: application/vnd.aai.asyncapi+json;version=3.0.0
+        schema:
+          $ref: "#/components/schemas/de.exaring.watchlist.event.incoming.SourceModifiedEventPayload"
+      name: de.exaring.watchlist.event.incoming.SourceModifiedEventPayload
+      title: SourceModifiedEventPayload
+      bindings: {}
+    de.exaring.watchlist.event.incoming.StreamPositionUpdatePayload:
+      headers:
+        $ref: "#/components/schemas/HeadersNotDocumented"
+      payload:
+        schemaFormat: application/vnd.aai.asyncapi+json;version=3.0.0
+        schema:
+          $ref: "#/components/schemas/de.exaring.watchlist.event.incoming.StreamPositionUpdatePayload"
+      name: de.exaring.watchlist.event.incoming.StreamPositionUpdatePayload
+      title: StreamPositionUpdatePayload
+      bindings: {}
+    de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload:
+      headers:
+        $ref: "#/components/schemas/HeadersNotDocumented"
+      payload:
+        schemaFormat: application/vnd.aai.asyncapi+json;version=3.0.0
+        schema:
+          $ref: "#/components/schemas/de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload"
+      name: de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload
+      title: UserSubscriptionDeletedEventPayload
+      bindings: {}
+    de.exaring.watchlist.event.published.UserDataDeletionExecuted:
+      headers:
+        $ref: "#/components/schemas/HeadersNotDocumented"
+      payload:
+        schemaFormat: application/vnd.aai.asyncapi+json;version=3.0.0
+        schema:
+          $ref: "#/components/schemas/de.exaring.watchlist.event.published.UserDataDeletionExecuted"
+      name: de.exaring.watchlist.event.published.UserDataDeletionExecuted
+      title: UserDataDeletionExecuted
+      bindings: {}
+operations:
+  SourceModified_receive_receiveEvent:
+    action: receive
+    channel:
+      $ref: "#/channels/SourceModified"
+    title: SourceModified_receive
+    description: This is a test description
+    bindings: {}
+    messages:
+      - $ref: "#/channels/SourceModified/messages/de.exaring.watchlist.event.incoming.SourceModifiedEventPayload"
+      - $ref: "#/channels/SourceModified/messages/de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload"
+  StreamPositionUpdate_receive_receiveEvent:
+    action: receive
+    channel:
+      $ref: "#/channels/StreamPositionUpdate"
+    title: StreamPositionUpdate_receive
+    description: This is a test description
+    bindings: {}
+    messages:
+      - $ref: "#/channels/StreamPositionUpdate/messages/de.exaring.watchlist.event.incoming.StreamPositionUpdatePayload"
+  UserDataDeletionExecuted_send_publishUserDeletedResponseEvent:
+    action: send
+    channel:
+      $ref: "#/channels/UserDataDeletionExecuted"
+    title: UserDataDeletionExecuted_send
+    description: This event is published when user data deletion is executed.
+    bindings: {}
+    messages:
+      - $ref: "#/channels/UserDataDeletionExecuted/messages/de.exaring.watchlist.event.published.UserDataDeletionExecuted"
+  UserSubscriptionDeleted_receive_receiveEvent:
+    action: receive
+    channel:
+      $ref: "#/channels/UserSubscriptionDeleted"
+    title: UserSubscriptionDeleted_receive
+    description: This is a test description
+    bindings: {}
+    messages:
+      - $ref: "#/channels/UserSubscriptionDeleted/messages/de.exaring.watchlist.event.incoming.UserSubscriptionDeletedEventPayload"
