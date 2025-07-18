@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: my-spring-api
+  description: OpenAPI definition for My Spring App
+  tags:
+    - openapi
+spec:
+  type: openapi
+  lifecycle: production
+  owner: your-team
+  definition:
+    $text: https://github.com/Ianleeclark/test1234/blob/main/api.yaml
