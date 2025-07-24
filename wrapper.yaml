@@ -4,13 +4,13 @@ metadata:
   name: watchlist-events
   description: OpenAPI definition for My Spring App
   tags:
-    - openapi
+    - asynapi
 spec:
-  type: openapi
+  type: asyncapi
   lifecycle: production
   owner: guests
   definition: |
-    asyncapi: 3.0.0
+    asyncapi: "3.0.0"
     info:
       title: watchlist
       version: 1.0.0
